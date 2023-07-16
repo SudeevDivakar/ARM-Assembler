@@ -1,0 +1,1375 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> LABEL Labels DIRECTIVE STRING Strings
+Rule 2     start -> LABEL Labels DIRECTIVE NUMBER Numbers
+Rule 3     start -> Labels
+Rule 4     start -> DIRECTIVE
+Rule 5     Labels -> EMPTY
+Rule 6     Labels -> LABEL Labels
+Rule 7     Numbers -> EMPTY
+Rule 8     Numbers -> COMMA NUMBER Numbers
+Rule 9     Strings -> EMPTY
+Rule 10    Strings -> COMMA STRING Strings
+Rule 11    EMPTY -> <empty>
+Rule 12    start -> Labels Instruction Operands
+Rule 13    Instruction -> MNE Condition Flag Mode
+Rule 14    Condition -> EMPTY
+Rule 15    Condition -> COND
+Rule 16    Flag -> EMPTY
+Rule 17    Flag -> S_FLAG
+Rule 18    Mode -> EMPTY
+Rule 19    Mode -> AMODE
+Rule 20    Operands -> Case_1
+Rule 21    Operands -> Case_2
+Rule 22    Operands -> Case_3
+Rule 23    Operands -> Case_4
+Rule 24    Operands -> Case_5
+Rule 25    Operands -> Case_6
+Rule 26    Operands -> Case_7
+Rule 27    Operands -> Case_8
+Rule 28    Operands -> Case_9
+Rule 29    Operands -> Case_10
+Rule 30    Operands -> Case_11
+Rule 31    Operands -> Case_12
+Rule 32    Operands -> Case_13
+Rule 33    Operands -> Case_14
+Rule 34    Operands -> Case_15
+Rule 35    Operands -> Case_16
+Rule 36    Operands -> Case_17
+Rule 37    Operands -> Case_18
+Rule 38    Operands -> Case_19
+Rule 39    Case_1 -> REGISTER COMMA REGISTER COMMA REGISTER COMMA REGISTER
+Rule 40    Case_2 -> REGISTER COMMA REGISTER COMMA REGISTER Shift
+Rule 41    Case_3 -> REGISTER COMMA REGISTER COMMA IMMEDIATE
+Rule 42    Case_4 -> REGISTER COMMA REGISTER Shift
+Rule 43    Case_5 -> REGISTER COMMA IMMEDIATE
+Rule 44    Case_6 -> REGISTER COMMA ST_REG
+Rule 45    Case_7 -> ST_REG_F COMMA REGISTER
+Rule 46    Case_8 -> ST_REG_F COMMA IMMEDIATE
+Rule 47    Case_9 -> REGISTER
+Rule 48    Case_10 -> IMMEDIATE
+Rule 49    Case_11 -> NUMBER
+Rule 50    Case_12 -> ADDRESS
+Rule 51    Case_13 -> REGISTER COMMA LF Reg_List RF Op_Mod
+Rule 52    Case_13 -> REGISTER EM COMMA LF Reg_List RF Op_Mod
+Rule 53    Case_14 -> REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm RB Write_Back
+Rule 54    Case_15 -> REGISTER COMMA LB REGISTER COMMA IMMEDIATE RB Write_Back
+Rule 55    Case_16 -> REGISTER COMMA LB REGISTER RB Write_Back
+Rule 56    Case_17 -> REGISTER COMMA LB REGISTER RB COMMA IMMEDIATE
+Rule 57    Case_18 -> REGISTER COMMA LB REGISTER RB COMMA Reg_Shift_Imm
+Rule 58    Case_19 -> REGISTER COMMA ADDRESS
+Rule 59    Write_Back -> EMPTY
+Rule 60    Write_Back -> EM
+Rule 61    Reg_Shift_Imm -> Negative REGISTER Shift_Imm
+Rule 62    Negative -> EMPTY
+Rule 63    Negative -> HYPHEN
+Rule 64    Shift_Imm -> EMPTY
+Rule 65    Shift_Imm -> COMMA SHIFT_ACTION IMMEDIATE
+Rule 66    Shift_Imm -> COMMA RRX
+Rule 67    Reg_List -> REGISTER HYPHEN REGISTER
+Rule 68    Reg_List -> REGISTER Registers
+Rule 69    Registers -> EMPTY
+Rule 70    Registers -> Registers COMMA REGISTER
+Rule 71    Op_Mod -> EMPTY
+Rule 72    Op_Mod -> CR
+Rule 73    Shift -> EMPTY
+Rule 74    Shift -> COMMA SHIFT_ACTION REGISTER
+Rule 75    Shift -> COMMA SHIFT_ACTION IMMEDIATE
+Rule 76    Shift -> COMMA RRX
+
+Terminals, with rules where they appear
+
+ADDRESS              : 50 58
+AMODE                : 19
+COMMA                : 8 10 39 39 39 40 40 41 41 42 43 44 45 46 51 52 53 53 54 54 55 56 56 57 57 58 65 66 70 74 75 76
+COND                 : 15
+CR                   : 72
+DIRECTIVE            : 1 2 4
+EM                   : 52 60
+HYPHEN               : 63 67
+IMMEDIATE            : 41 43 46 48 54 56 65 75
+LABEL                : 1 2 6
+LB                   : 53 54 55 56 57
+LF                   : 51 52
+MNE                  : 13
+NUMBER               : 2 8 49
+RB                   : 53 54 55 56 57
+REGISTER             : 39 39 39 39 40 40 40 41 41 42 42 43 44 45 47 51 52 53 53 54 54 55 55 56 56 57 57 58 61 67 67 68 70 74
+RF                   : 51 52
+RRX                  : 66 76
+SHIFT_ACTION         : 65 74 75
+STRING               : 1 10
+ST_REG               : 44
+ST_REG_F             : 45 46
+S_FLAG               : 17
+error                : 
+
+Nonterminals, with rules where they appear
+
+Case_1               : 20
+Case_10              : 29
+Case_11              : 30
+Case_12              : 31
+Case_13              : 32
+Case_14              : 33
+Case_15              : 34
+Case_16              : 35
+Case_17              : 36
+Case_18              : 37
+Case_19              : 38
+Case_2               : 21
+Case_3               : 22
+Case_4               : 23
+Case_5               : 24
+Case_6               : 25
+Case_7               : 26
+Case_8               : 27
+Case_9               : 28
+Condition            : 13
+EMPTY                : 5 7 9 14 16 18 59 62 64 69 71 73
+Flag                 : 13
+Instruction          : 12
+Labels               : 1 2 3 6 12
+Mode                 : 13
+Negative             : 61
+Numbers              : 2 8
+Op_Mod               : 51 52
+Operands             : 12
+Reg_List             : 51 52
+Reg_Shift_Imm        : 53 57
+Registers            : 68 70
+Shift                : 40 42
+Shift_Imm            : 61
+Strings              : 1 10
+Write_Back           : 53 54 55
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . LABEL Labels DIRECTIVE STRING Strings
+    (2) start -> . LABEL Labels DIRECTIVE NUMBER Numbers
+    (3) start -> . Labels
+    (4) start -> . DIRECTIVE
+    (12) start -> . Labels Instruction Operands
+    (5) Labels -> . EMPTY
+    (6) Labels -> . LABEL Labels
+    (11) EMPTY -> .
+
+    LABEL           shift and go to state 2
+    DIRECTIVE       shift and go to state 4
+    MNE             reduce using rule 11 (EMPTY -> .)
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    start                          shift and go to state 1
+    Labels                         shift and go to state 3
+    EMPTY                          shift and go to state 5
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> LABEL . Labels DIRECTIVE STRING Strings
+    (2) start -> LABEL . Labels DIRECTIVE NUMBER Numbers
+    (6) Labels -> LABEL . Labels
+    (5) Labels -> . EMPTY
+    (6) Labels -> . LABEL Labels
+    (11) EMPTY -> .
+
+    LABEL           shift and go to state 6
+    DIRECTIVE       reduce using rule 11 (EMPTY -> .)
+    MNE             reduce using rule 11 (EMPTY -> .)
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Labels                         shift and go to state 7
+    EMPTY                          shift and go to state 5
+
+state 3
+
+    (3) start -> Labels .
+    (12) start -> Labels . Instruction Operands
+    (13) Instruction -> . MNE Condition Flag Mode
+
+    $end            reduce using rule 3 (start -> Labels .)
+    MNE             shift and go to state 9
+
+    Instruction                    shift and go to state 8
+
+state 4
+
+    (4) start -> DIRECTIVE .
+
+    $end            reduce using rule 4 (start -> DIRECTIVE .)
+
+
+state 5
+
+    (5) Labels -> EMPTY .
+
+    MNE             reduce using rule 5 (Labels -> EMPTY .)
+    $end            reduce using rule 5 (Labels -> EMPTY .)
+    DIRECTIVE       reduce using rule 5 (Labels -> EMPTY .)
+
+
+state 6
+
+    (6) Labels -> LABEL . Labels
+    (5) Labels -> . EMPTY
+    (6) Labels -> . LABEL Labels
+    (11) EMPTY -> .
+
+    LABEL           shift and go to state 6
+    DIRECTIVE       reduce using rule 11 (EMPTY -> .)
+    MNE             reduce using rule 11 (EMPTY -> .)
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Labels                         shift and go to state 10
+    EMPTY                          shift and go to state 5
+
+state 7
+
+    (1) start -> LABEL Labels . DIRECTIVE STRING Strings
+    (2) start -> LABEL Labels . DIRECTIVE NUMBER Numbers
+    (6) Labels -> LABEL Labels .
+
+    DIRECTIVE       shift and go to state 11
+    MNE             reduce using rule 6 (Labels -> LABEL Labels .)
+    $end            reduce using rule 6 (Labels -> LABEL Labels .)
+
+
+state 8
+
+    (12) start -> Labels Instruction . Operands
+    (20) Operands -> . Case_1
+    (21) Operands -> . Case_2
+    (22) Operands -> . Case_3
+    (23) Operands -> . Case_4
+    (24) Operands -> . Case_5
+    (25) Operands -> . Case_6
+    (26) Operands -> . Case_7
+    (27) Operands -> . Case_8
+    (28) Operands -> . Case_9
+    (29) Operands -> . Case_10
+    (30) Operands -> . Case_11
+    (31) Operands -> . Case_12
+    (32) Operands -> . Case_13
+    (33) Operands -> . Case_14
+    (34) Operands -> . Case_15
+    (35) Operands -> . Case_16
+    (36) Operands -> . Case_17
+    (37) Operands -> . Case_18
+    (38) Operands -> . Case_19
+    (39) Case_1 -> . REGISTER COMMA REGISTER COMMA REGISTER COMMA REGISTER
+    (40) Case_2 -> . REGISTER COMMA REGISTER COMMA REGISTER Shift
+    (41) Case_3 -> . REGISTER COMMA REGISTER COMMA IMMEDIATE
+    (42) Case_4 -> . REGISTER COMMA REGISTER Shift
+    (43) Case_5 -> . REGISTER COMMA IMMEDIATE
+    (44) Case_6 -> . REGISTER COMMA ST_REG
+    (45) Case_7 -> . ST_REG_F COMMA REGISTER
+    (46) Case_8 -> . ST_REG_F COMMA IMMEDIATE
+    (47) Case_9 -> . REGISTER
+    (48) Case_10 -> . IMMEDIATE
+    (49) Case_11 -> . NUMBER
+    (50) Case_12 -> . ADDRESS
+    (51) Case_13 -> . REGISTER COMMA LF Reg_List RF Op_Mod
+    (52) Case_13 -> . REGISTER EM COMMA LF Reg_List RF Op_Mod
+    (53) Case_14 -> . REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> . REGISTER COMMA LB REGISTER COMMA IMMEDIATE RB Write_Back
+    (55) Case_16 -> . REGISTER COMMA LB REGISTER RB Write_Back
+    (56) Case_17 -> . REGISTER COMMA LB REGISTER RB COMMA IMMEDIATE
+    (57) Case_18 -> . REGISTER COMMA LB REGISTER RB COMMA Reg_Shift_Imm
+    (58) Case_19 -> . REGISTER COMMA ADDRESS
+
+    REGISTER        shift and go to state 32
+    ST_REG_F        shift and go to state 34
+    IMMEDIATE       shift and go to state 33
+    NUMBER          shift and go to state 35
+    ADDRESS         shift and go to state 36
+
+    Operands                       shift and go to state 12
+    Case_1                         shift and go to state 13
+    Case_2                         shift and go to state 14
+    Case_3                         shift and go to state 15
+    Case_4                         shift and go to state 16
+    Case_5                         shift and go to state 17
+    Case_6                         shift and go to state 18
+    Case_7                         shift and go to state 19
+    Case_8                         shift and go to state 20
+    Case_9                         shift and go to state 21
+    Case_10                        shift and go to state 22
+    Case_11                        shift and go to state 23
+    Case_12                        shift and go to state 24
+    Case_13                        shift and go to state 25
+    Case_14                        shift and go to state 26
+    Case_15                        shift and go to state 27
+    Case_16                        shift and go to state 28
+    Case_17                        shift and go to state 29
+    Case_18                        shift and go to state 30
+    Case_19                        shift and go to state 31
+
+state 9
+
+    (13) Instruction -> MNE . Condition Flag Mode
+    (14) Condition -> . EMPTY
+    (15) Condition -> . COND
+    (11) EMPTY -> .
+
+    COND            shift and go to state 39
+    S_FLAG          reduce using rule 11 (EMPTY -> .)
+    AMODE           reduce using rule 11 (EMPTY -> .)
+    REGISTER        reduce using rule 11 (EMPTY -> .)
+    ST_REG_F        reduce using rule 11 (EMPTY -> .)
+    IMMEDIATE       reduce using rule 11 (EMPTY -> .)
+    NUMBER          reduce using rule 11 (EMPTY -> .)
+    ADDRESS         reduce using rule 11 (EMPTY -> .)
+
+    Condition                      shift and go to state 37
+    EMPTY                          shift and go to state 38
+
+state 10
+
+    (6) Labels -> LABEL Labels .
+
+    DIRECTIVE       reduce using rule 6 (Labels -> LABEL Labels .)
+    MNE             reduce using rule 6 (Labels -> LABEL Labels .)
+    $end            reduce using rule 6 (Labels -> LABEL Labels .)
+
+
+state 11
+
+    (1) start -> LABEL Labels DIRECTIVE . STRING Strings
+    (2) start -> LABEL Labels DIRECTIVE . NUMBER Numbers
+
+    STRING          shift and go to state 40
+    NUMBER          shift and go to state 41
+
+
+state 12
+
+    (12) start -> Labels Instruction Operands .
+
+    $end            reduce using rule 12 (start -> Labels Instruction Operands .)
+
+
+state 13
+
+    (20) Operands -> Case_1 .
+
+    $end            reduce using rule 20 (Operands -> Case_1 .)
+
+
+state 14
+
+    (21) Operands -> Case_2 .
+
+    $end            reduce using rule 21 (Operands -> Case_2 .)
+
+
+state 15
+
+    (22) Operands -> Case_3 .
+
+    $end            reduce using rule 22 (Operands -> Case_3 .)
+
+
+state 16
+
+    (23) Operands -> Case_4 .
+
+    $end            reduce using rule 23 (Operands -> Case_4 .)
+
+
+state 17
+
+    (24) Operands -> Case_5 .
+
+    $end            reduce using rule 24 (Operands -> Case_5 .)
+
+
+state 18
+
+    (25) Operands -> Case_6 .
+
+    $end            reduce using rule 25 (Operands -> Case_6 .)
+
+
+state 19
+
+    (26) Operands -> Case_7 .
+
+    $end            reduce using rule 26 (Operands -> Case_7 .)
+
+
+state 20
+
+    (27) Operands -> Case_8 .
+
+    $end            reduce using rule 27 (Operands -> Case_8 .)
+
+
+state 21
+
+    (28) Operands -> Case_9 .
+
+    $end            reduce using rule 28 (Operands -> Case_9 .)
+
+
+state 22
+
+    (29) Operands -> Case_10 .
+
+    $end            reduce using rule 29 (Operands -> Case_10 .)
+
+
+state 23
+
+    (30) Operands -> Case_11 .
+
+    $end            reduce using rule 30 (Operands -> Case_11 .)
+
+
+state 24
+
+    (31) Operands -> Case_12 .
+
+    $end            reduce using rule 31 (Operands -> Case_12 .)
+
+
+state 25
+
+    (32) Operands -> Case_13 .
+
+    $end            reduce using rule 32 (Operands -> Case_13 .)
+
+
+state 26
+
+    (33) Operands -> Case_14 .
+
+    $end            reduce using rule 33 (Operands -> Case_14 .)
+
+
+state 27
+
+    (34) Operands -> Case_15 .
+
+    $end            reduce using rule 34 (Operands -> Case_15 .)
+
+
+state 28
+
+    (35) Operands -> Case_16 .
+
+    $end            reduce using rule 35 (Operands -> Case_16 .)
+
+
+state 29
+
+    (36) Operands -> Case_17 .
+
+    $end            reduce using rule 36 (Operands -> Case_17 .)
+
+
+state 30
+
+    (37) Operands -> Case_18 .
+
+    $end            reduce using rule 37 (Operands -> Case_18 .)
+
+
+state 31
+
+    (38) Operands -> Case_19 .
+
+    $end            reduce using rule 38 (Operands -> Case_19 .)
+
+
+state 32
+
+    (39) Case_1 -> REGISTER . COMMA REGISTER COMMA REGISTER COMMA REGISTER
+    (40) Case_2 -> REGISTER . COMMA REGISTER COMMA REGISTER Shift
+    (41) Case_3 -> REGISTER . COMMA REGISTER COMMA IMMEDIATE
+    (42) Case_4 -> REGISTER . COMMA REGISTER Shift
+    (43) Case_5 -> REGISTER . COMMA IMMEDIATE
+    (44) Case_6 -> REGISTER . COMMA ST_REG
+    (47) Case_9 -> REGISTER .
+    (51) Case_13 -> REGISTER . COMMA LF Reg_List RF Op_Mod
+    (52) Case_13 -> REGISTER . EM COMMA LF Reg_List RF Op_Mod
+    (53) Case_14 -> REGISTER . COMMA LB REGISTER COMMA Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> REGISTER . COMMA LB REGISTER COMMA IMMEDIATE RB Write_Back
+    (55) Case_16 -> REGISTER . COMMA LB REGISTER RB Write_Back
+    (56) Case_17 -> REGISTER . COMMA LB REGISTER RB COMMA IMMEDIATE
+    (57) Case_18 -> REGISTER . COMMA LB REGISTER RB COMMA Reg_Shift_Imm
+    (58) Case_19 -> REGISTER . COMMA ADDRESS
+
+    COMMA           shift and go to state 42
+    $end            reduce using rule 47 (Case_9 -> REGISTER .)
+    EM              shift and go to state 43
+
+
+state 33
+
+    (48) Case_10 -> IMMEDIATE .
+
+    $end            reduce using rule 48 (Case_10 -> IMMEDIATE .)
+
+
+state 34
+
+    (45) Case_7 -> ST_REG_F . COMMA REGISTER
+    (46) Case_8 -> ST_REG_F . COMMA IMMEDIATE
+
+    COMMA           shift and go to state 44
+
+
+state 35
+
+    (49) Case_11 -> NUMBER .
+
+    $end            reduce using rule 49 (Case_11 -> NUMBER .)
+
+
+state 36
+
+    (50) Case_12 -> ADDRESS .
+
+    $end            reduce using rule 50 (Case_12 -> ADDRESS .)
+
+
+state 37
+
+    (13) Instruction -> MNE Condition . Flag Mode
+    (16) Flag -> . EMPTY
+    (17) Flag -> . S_FLAG
+    (11) EMPTY -> .
+
+    S_FLAG          shift and go to state 47
+    AMODE           reduce using rule 11 (EMPTY -> .)
+    REGISTER        reduce using rule 11 (EMPTY -> .)
+    ST_REG_F        reduce using rule 11 (EMPTY -> .)
+    IMMEDIATE       reduce using rule 11 (EMPTY -> .)
+    NUMBER          reduce using rule 11 (EMPTY -> .)
+    ADDRESS         reduce using rule 11 (EMPTY -> .)
+
+    Flag                           shift and go to state 45
+    EMPTY                          shift and go to state 46
+
+state 38
+
+    (14) Condition -> EMPTY .
+
+    S_FLAG          reduce using rule 14 (Condition -> EMPTY .)
+    AMODE           reduce using rule 14 (Condition -> EMPTY .)
+    REGISTER        reduce using rule 14 (Condition -> EMPTY .)
+    ST_REG_F        reduce using rule 14 (Condition -> EMPTY .)
+    IMMEDIATE       reduce using rule 14 (Condition -> EMPTY .)
+    NUMBER          reduce using rule 14 (Condition -> EMPTY .)
+    ADDRESS         reduce using rule 14 (Condition -> EMPTY .)
+
+
+state 39
+
+    (15) Condition -> COND .
+
+    S_FLAG          reduce using rule 15 (Condition -> COND .)
+    AMODE           reduce using rule 15 (Condition -> COND .)
+    REGISTER        reduce using rule 15 (Condition -> COND .)
+    ST_REG_F        reduce using rule 15 (Condition -> COND .)
+    IMMEDIATE       reduce using rule 15 (Condition -> COND .)
+    NUMBER          reduce using rule 15 (Condition -> COND .)
+    ADDRESS         reduce using rule 15 (Condition -> COND .)
+
+
+state 40
+
+    (1) start -> LABEL Labels DIRECTIVE STRING . Strings
+    (9) Strings -> . EMPTY
+    (10) Strings -> . COMMA STRING Strings
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 50
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Strings                        shift and go to state 48
+    EMPTY                          shift and go to state 49
+
+state 41
+
+    (2) start -> LABEL Labels DIRECTIVE NUMBER . Numbers
+    (7) Numbers -> . EMPTY
+    (8) Numbers -> . COMMA NUMBER Numbers
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 53
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Numbers                        shift and go to state 51
+    EMPTY                          shift and go to state 52
+
+state 42
+
+    (39) Case_1 -> REGISTER COMMA . REGISTER COMMA REGISTER COMMA REGISTER
+    (40) Case_2 -> REGISTER COMMA . REGISTER COMMA REGISTER Shift
+    (41) Case_3 -> REGISTER COMMA . REGISTER COMMA IMMEDIATE
+    (42) Case_4 -> REGISTER COMMA . REGISTER Shift
+    (43) Case_5 -> REGISTER COMMA . IMMEDIATE
+    (44) Case_6 -> REGISTER COMMA . ST_REG
+    (51) Case_13 -> REGISTER COMMA . LF Reg_List RF Op_Mod
+    (53) Case_14 -> REGISTER COMMA . LB REGISTER COMMA Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> REGISTER COMMA . LB REGISTER COMMA IMMEDIATE RB Write_Back
+    (55) Case_16 -> REGISTER COMMA . LB REGISTER RB Write_Back
+    (56) Case_17 -> REGISTER COMMA . LB REGISTER RB COMMA IMMEDIATE
+    (57) Case_18 -> REGISTER COMMA . LB REGISTER RB COMMA Reg_Shift_Imm
+    (58) Case_19 -> REGISTER COMMA . ADDRESS
+
+    REGISTER        shift and go to state 54
+    IMMEDIATE       shift and go to state 55
+    ST_REG          shift and go to state 56
+    LF              shift and go to state 57
+    LB              shift and go to state 58
+    ADDRESS         shift and go to state 59
+
+
+state 43
+
+    (52) Case_13 -> REGISTER EM . COMMA LF Reg_List RF Op_Mod
+
+    COMMA           shift and go to state 60
+
+
+state 44
+
+    (45) Case_7 -> ST_REG_F COMMA . REGISTER
+    (46) Case_8 -> ST_REG_F COMMA . IMMEDIATE
+
+    REGISTER        shift and go to state 61
+    IMMEDIATE       shift and go to state 62
+
+
+state 45
+
+    (13) Instruction -> MNE Condition Flag . Mode
+    (18) Mode -> . EMPTY
+    (19) Mode -> . AMODE
+    (11) EMPTY -> .
+
+    AMODE           shift and go to state 65
+    REGISTER        reduce using rule 11 (EMPTY -> .)
+    ST_REG_F        reduce using rule 11 (EMPTY -> .)
+    IMMEDIATE       reduce using rule 11 (EMPTY -> .)
+    NUMBER          reduce using rule 11 (EMPTY -> .)
+    ADDRESS         reduce using rule 11 (EMPTY -> .)
+
+    Mode                           shift and go to state 63
+    EMPTY                          shift and go to state 64
+
+state 46
+
+    (16) Flag -> EMPTY .
+
+    AMODE           reduce using rule 16 (Flag -> EMPTY .)
+    REGISTER        reduce using rule 16 (Flag -> EMPTY .)
+    ST_REG_F        reduce using rule 16 (Flag -> EMPTY .)
+    IMMEDIATE       reduce using rule 16 (Flag -> EMPTY .)
+    NUMBER          reduce using rule 16 (Flag -> EMPTY .)
+    ADDRESS         reduce using rule 16 (Flag -> EMPTY .)
+
+
+state 47
+
+    (17) Flag -> S_FLAG .
+
+    AMODE           reduce using rule 17 (Flag -> S_FLAG .)
+    REGISTER        reduce using rule 17 (Flag -> S_FLAG .)
+    ST_REG_F        reduce using rule 17 (Flag -> S_FLAG .)
+    IMMEDIATE       reduce using rule 17 (Flag -> S_FLAG .)
+    NUMBER          reduce using rule 17 (Flag -> S_FLAG .)
+    ADDRESS         reduce using rule 17 (Flag -> S_FLAG .)
+
+
+state 48
+
+    (1) start -> LABEL Labels DIRECTIVE STRING Strings .
+
+    $end            reduce using rule 1 (start -> LABEL Labels DIRECTIVE STRING Strings .)
+
+
+state 49
+
+    (9) Strings -> EMPTY .
+
+    $end            reduce using rule 9 (Strings -> EMPTY .)
+
+
+state 50
+
+    (10) Strings -> COMMA . STRING Strings
+
+    STRING          shift and go to state 66
+
+
+state 51
+
+    (2) start -> LABEL Labels DIRECTIVE NUMBER Numbers .
+
+    $end            reduce using rule 2 (start -> LABEL Labels DIRECTIVE NUMBER Numbers .)
+
+
+state 52
+
+    (7) Numbers -> EMPTY .
+
+    $end            reduce using rule 7 (Numbers -> EMPTY .)
+
+
+state 53
+
+    (8) Numbers -> COMMA . NUMBER Numbers
+
+    NUMBER          shift and go to state 67
+
+
+state 54
+
+    (39) Case_1 -> REGISTER COMMA REGISTER . COMMA REGISTER COMMA REGISTER
+    (40) Case_2 -> REGISTER COMMA REGISTER . COMMA REGISTER Shift
+    (41) Case_3 -> REGISTER COMMA REGISTER . COMMA IMMEDIATE
+    (42) Case_4 -> REGISTER COMMA REGISTER . Shift
+    (73) Shift -> . EMPTY
+    (74) Shift -> . COMMA SHIFT_ACTION REGISTER
+    (75) Shift -> . COMMA SHIFT_ACTION IMMEDIATE
+    (76) Shift -> . COMMA RRX
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 68
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Shift                          shift and go to state 69
+    EMPTY                          shift and go to state 70
+
+state 55
+
+    (43) Case_5 -> REGISTER COMMA IMMEDIATE .
+
+    $end            reduce using rule 43 (Case_5 -> REGISTER COMMA IMMEDIATE .)
+
+
+state 56
+
+    (44) Case_6 -> REGISTER COMMA ST_REG .
+
+    $end            reduce using rule 44 (Case_6 -> REGISTER COMMA ST_REG .)
+
+
+state 57
+
+    (51) Case_13 -> REGISTER COMMA LF . Reg_List RF Op_Mod
+    (67) Reg_List -> . REGISTER HYPHEN REGISTER
+    (68) Reg_List -> . REGISTER Registers
+
+    REGISTER        shift and go to state 71
+
+    Reg_List                       shift and go to state 72
+
+state 58
+
+    (53) Case_14 -> REGISTER COMMA LB . REGISTER COMMA Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> REGISTER COMMA LB . REGISTER COMMA IMMEDIATE RB Write_Back
+    (55) Case_16 -> REGISTER COMMA LB . REGISTER RB Write_Back
+    (56) Case_17 -> REGISTER COMMA LB . REGISTER RB COMMA IMMEDIATE
+    (57) Case_18 -> REGISTER COMMA LB . REGISTER RB COMMA Reg_Shift_Imm
+
+    REGISTER        shift and go to state 73
+
+
+state 59
+
+    (58) Case_19 -> REGISTER COMMA ADDRESS .
+
+    $end            reduce using rule 58 (Case_19 -> REGISTER COMMA ADDRESS .)
+
+
+state 60
+
+    (52) Case_13 -> REGISTER EM COMMA . LF Reg_List RF Op_Mod
+
+    LF              shift and go to state 74
+
+
+state 61
+
+    (45) Case_7 -> ST_REG_F COMMA REGISTER .
+
+    $end            reduce using rule 45 (Case_7 -> ST_REG_F COMMA REGISTER .)
+
+
+state 62
+
+    (46) Case_8 -> ST_REG_F COMMA IMMEDIATE .
+
+    $end            reduce using rule 46 (Case_8 -> ST_REG_F COMMA IMMEDIATE .)
+
+
+state 63
+
+    (13) Instruction -> MNE Condition Flag Mode .
+
+    REGISTER        reduce using rule 13 (Instruction -> MNE Condition Flag Mode .)
+    ST_REG_F        reduce using rule 13 (Instruction -> MNE Condition Flag Mode .)
+    IMMEDIATE       reduce using rule 13 (Instruction -> MNE Condition Flag Mode .)
+    NUMBER          reduce using rule 13 (Instruction -> MNE Condition Flag Mode .)
+    ADDRESS         reduce using rule 13 (Instruction -> MNE Condition Flag Mode .)
+
+
+state 64
+
+    (18) Mode -> EMPTY .
+
+    REGISTER        reduce using rule 18 (Mode -> EMPTY .)
+    ST_REG_F        reduce using rule 18 (Mode -> EMPTY .)
+    IMMEDIATE       reduce using rule 18 (Mode -> EMPTY .)
+    NUMBER          reduce using rule 18 (Mode -> EMPTY .)
+    ADDRESS         reduce using rule 18 (Mode -> EMPTY .)
+
+
+state 65
+
+    (19) Mode -> AMODE .
+
+    REGISTER        reduce using rule 19 (Mode -> AMODE .)
+    ST_REG_F        reduce using rule 19 (Mode -> AMODE .)
+    IMMEDIATE       reduce using rule 19 (Mode -> AMODE .)
+    NUMBER          reduce using rule 19 (Mode -> AMODE .)
+    ADDRESS         reduce using rule 19 (Mode -> AMODE .)
+
+
+state 66
+
+    (10) Strings -> COMMA STRING . Strings
+    (9) Strings -> . EMPTY
+    (10) Strings -> . COMMA STRING Strings
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 50
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Strings                        shift and go to state 75
+    EMPTY                          shift and go to state 49
+
+state 67
+
+    (8) Numbers -> COMMA NUMBER . Numbers
+    (7) Numbers -> . EMPTY
+    (8) Numbers -> . COMMA NUMBER Numbers
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 53
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Numbers                        shift and go to state 76
+    EMPTY                          shift and go to state 52
+
+state 68
+
+    (39) Case_1 -> REGISTER COMMA REGISTER COMMA . REGISTER COMMA REGISTER
+    (40) Case_2 -> REGISTER COMMA REGISTER COMMA . REGISTER Shift
+    (41) Case_3 -> REGISTER COMMA REGISTER COMMA . IMMEDIATE
+    (74) Shift -> COMMA . SHIFT_ACTION REGISTER
+    (75) Shift -> COMMA . SHIFT_ACTION IMMEDIATE
+    (76) Shift -> COMMA . RRX
+
+    REGISTER        shift and go to state 77
+    IMMEDIATE       shift and go to state 78
+    SHIFT_ACTION    shift and go to state 79
+    RRX             shift and go to state 80
+
+
+state 69
+
+    (42) Case_4 -> REGISTER COMMA REGISTER Shift .
+
+    $end            reduce using rule 42 (Case_4 -> REGISTER COMMA REGISTER Shift .)
+
+
+state 70
+
+    (73) Shift -> EMPTY .
+
+    $end            reduce using rule 73 (Shift -> EMPTY .)
+
+
+state 71
+
+    (67) Reg_List -> REGISTER . HYPHEN REGISTER
+    (68) Reg_List -> REGISTER . Registers
+    (69) Registers -> . EMPTY
+    (70) Registers -> . Registers COMMA REGISTER
+    (11) EMPTY -> .
+
+    HYPHEN          shift and go to state 81
+    COMMA           reduce using rule 11 (EMPTY -> .)
+    RF              reduce using rule 11 (EMPTY -> .)
+
+    Registers                      shift and go to state 82
+    EMPTY                          shift and go to state 83
+
+state 72
+
+    (51) Case_13 -> REGISTER COMMA LF Reg_List . RF Op_Mod
+
+    RF              shift and go to state 84
+
+
+state 73
+
+    (53) Case_14 -> REGISTER COMMA LB REGISTER . COMMA Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> REGISTER COMMA LB REGISTER . COMMA IMMEDIATE RB Write_Back
+    (55) Case_16 -> REGISTER COMMA LB REGISTER . RB Write_Back
+    (56) Case_17 -> REGISTER COMMA LB REGISTER . RB COMMA IMMEDIATE
+    (57) Case_18 -> REGISTER COMMA LB REGISTER . RB COMMA Reg_Shift_Imm
+
+    COMMA           shift and go to state 85
+    RB              shift and go to state 86
+
+
+state 74
+
+    (52) Case_13 -> REGISTER EM COMMA LF . Reg_List RF Op_Mod
+    (67) Reg_List -> . REGISTER HYPHEN REGISTER
+    (68) Reg_List -> . REGISTER Registers
+
+    REGISTER        shift and go to state 71
+
+    Reg_List                       shift and go to state 87
+
+state 75
+
+    (10) Strings -> COMMA STRING Strings .
+
+    $end            reduce using rule 10 (Strings -> COMMA STRING Strings .)
+
+
+state 76
+
+    (8) Numbers -> COMMA NUMBER Numbers .
+
+    $end            reduce using rule 8 (Numbers -> COMMA NUMBER Numbers .)
+
+
+state 77
+
+    (39) Case_1 -> REGISTER COMMA REGISTER COMMA REGISTER . COMMA REGISTER
+    (40) Case_2 -> REGISTER COMMA REGISTER COMMA REGISTER . Shift
+    (73) Shift -> . EMPTY
+    (74) Shift -> . COMMA SHIFT_ACTION REGISTER
+    (75) Shift -> . COMMA SHIFT_ACTION IMMEDIATE
+    (76) Shift -> . COMMA RRX
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 88
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Shift                          shift and go to state 89
+    EMPTY                          shift and go to state 70
+
+state 78
+
+    (41) Case_3 -> REGISTER COMMA REGISTER COMMA IMMEDIATE .
+
+    $end            reduce using rule 41 (Case_3 -> REGISTER COMMA REGISTER COMMA IMMEDIATE .)
+
+
+state 79
+
+    (74) Shift -> COMMA SHIFT_ACTION . REGISTER
+    (75) Shift -> COMMA SHIFT_ACTION . IMMEDIATE
+
+    REGISTER        shift and go to state 90
+    IMMEDIATE       shift and go to state 91
+
+
+state 80
+
+    (76) Shift -> COMMA RRX .
+
+    $end            reduce using rule 76 (Shift -> COMMA RRX .)
+
+
+state 81
+
+    (67) Reg_List -> REGISTER HYPHEN . REGISTER
+
+    REGISTER        shift and go to state 92
+
+
+state 82
+
+    (68) Reg_List -> REGISTER Registers .
+    (70) Registers -> Registers . COMMA REGISTER
+
+    RF              reduce using rule 68 (Reg_List -> REGISTER Registers .)
+    COMMA           shift and go to state 93
+
+
+state 83
+
+    (69) Registers -> EMPTY .
+
+    COMMA           reduce using rule 69 (Registers -> EMPTY .)
+    RF              reduce using rule 69 (Registers -> EMPTY .)
+
+
+state 84
+
+    (51) Case_13 -> REGISTER COMMA LF Reg_List RF . Op_Mod
+    (71) Op_Mod -> . EMPTY
+    (72) Op_Mod -> . CR
+    (11) EMPTY -> .
+
+    CR              shift and go to state 96
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Op_Mod                         shift and go to state 94
+    EMPTY                          shift and go to state 95
+
+state 85
+
+    (53) Case_14 -> REGISTER COMMA LB REGISTER COMMA . Reg_Shift_Imm RB Write_Back
+    (54) Case_15 -> REGISTER COMMA LB REGISTER COMMA . IMMEDIATE RB Write_Back
+    (61) Reg_Shift_Imm -> . Negative REGISTER Shift_Imm
+    (62) Negative -> . EMPTY
+    (63) Negative -> . HYPHEN
+    (11) EMPTY -> .
+
+    IMMEDIATE       shift and go to state 98
+    HYPHEN          shift and go to state 101
+    REGISTER        reduce using rule 11 (EMPTY -> .)
+
+    Reg_Shift_Imm                  shift and go to state 97
+    Negative                       shift and go to state 99
+    EMPTY                          shift and go to state 100
+
+state 86
+
+    (55) Case_16 -> REGISTER COMMA LB REGISTER RB . Write_Back
+    (56) Case_17 -> REGISTER COMMA LB REGISTER RB . COMMA IMMEDIATE
+    (57) Case_18 -> REGISTER COMMA LB REGISTER RB . COMMA Reg_Shift_Imm
+    (59) Write_Back -> . EMPTY
+    (60) Write_Back -> . EM
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 102
+    EM              shift and go to state 105
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Write_Back                     shift and go to state 103
+    EMPTY                          shift and go to state 104
+
+state 87
+
+    (52) Case_13 -> REGISTER EM COMMA LF Reg_List . RF Op_Mod
+
+    RF              shift and go to state 106
+
+
+state 88
+
+    (39) Case_1 -> REGISTER COMMA REGISTER COMMA REGISTER COMMA . REGISTER
+    (74) Shift -> COMMA . SHIFT_ACTION REGISTER
+    (75) Shift -> COMMA . SHIFT_ACTION IMMEDIATE
+    (76) Shift -> COMMA . RRX
+
+    REGISTER        shift and go to state 107
+    SHIFT_ACTION    shift and go to state 79
+    RRX             shift and go to state 80
+
+
+state 89
+
+    (40) Case_2 -> REGISTER COMMA REGISTER COMMA REGISTER Shift .
+
+    $end            reduce using rule 40 (Case_2 -> REGISTER COMMA REGISTER COMMA REGISTER Shift .)
+
+
+state 90
+
+    (74) Shift -> COMMA SHIFT_ACTION REGISTER .
+
+    $end            reduce using rule 74 (Shift -> COMMA SHIFT_ACTION REGISTER .)
+
+
+state 91
+
+    (75) Shift -> COMMA SHIFT_ACTION IMMEDIATE .
+
+    $end            reduce using rule 75 (Shift -> COMMA SHIFT_ACTION IMMEDIATE .)
+
+
+state 92
+
+    (67) Reg_List -> REGISTER HYPHEN REGISTER .
+
+    RF              reduce using rule 67 (Reg_List -> REGISTER HYPHEN REGISTER .)
+
+
+state 93
+
+    (70) Registers -> Registers COMMA . REGISTER
+
+    REGISTER        shift and go to state 108
+
+
+state 94
+
+    (51) Case_13 -> REGISTER COMMA LF Reg_List RF Op_Mod .
+
+    $end            reduce using rule 51 (Case_13 -> REGISTER COMMA LF Reg_List RF Op_Mod .)
+
+
+state 95
+
+    (71) Op_Mod -> EMPTY .
+
+    $end            reduce using rule 71 (Op_Mod -> EMPTY .)
+
+
+state 96
+
+    (72) Op_Mod -> CR .
+
+    $end            reduce using rule 72 (Op_Mod -> CR .)
+
+
+state 97
+
+    (53) Case_14 -> REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm . RB Write_Back
+
+    RB              shift and go to state 109
+
+
+state 98
+
+    (54) Case_15 -> REGISTER COMMA LB REGISTER COMMA IMMEDIATE . RB Write_Back
+
+    RB              shift and go to state 110
+
+
+state 99
+
+    (61) Reg_Shift_Imm -> Negative . REGISTER Shift_Imm
+
+    REGISTER        shift and go to state 111
+
+
+state 100
+
+    (62) Negative -> EMPTY .
+
+    REGISTER        reduce using rule 62 (Negative -> EMPTY .)
+
+
+state 101
+
+    (63) Negative -> HYPHEN .
+
+    REGISTER        reduce using rule 63 (Negative -> HYPHEN .)
+
+
+state 102
+
+    (56) Case_17 -> REGISTER COMMA LB REGISTER RB COMMA . IMMEDIATE
+    (57) Case_18 -> REGISTER COMMA LB REGISTER RB COMMA . Reg_Shift_Imm
+    (61) Reg_Shift_Imm -> . Negative REGISTER Shift_Imm
+    (62) Negative -> . EMPTY
+    (63) Negative -> . HYPHEN
+    (11) EMPTY -> .
+
+    IMMEDIATE       shift and go to state 112
+    HYPHEN          shift and go to state 101
+    REGISTER        reduce using rule 11 (EMPTY -> .)
+
+    Reg_Shift_Imm                  shift and go to state 113
+    Negative                       shift and go to state 99
+    EMPTY                          shift and go to state 100
+
+state 103
+
+    (55) Case_16 -> REGISTER COMMA LB REGISTER RB Write_Back .
+
+    $end            reduce using rule 55 (Case_16 -> REGISTER COMMA LB REGISTER RB Write_Back .)
+
+
+state 104
+
+    (59) Write_Back -> EMPTY .
+
+    $end            reduce using rule 59 (Write_Back -> EMPTY .)
+
+
+state 105
+
+    (60) Write_Back -> EM .
+
+    $end            reduce using rule 60 (Write_Back -> EM .)
+
+
+state 106
+
+    (52) Case_13 -> REGISTER EM COMMA LF Reg_List RF . Op_Mod
+    (71) Op_Mod -> . EMPTY
+    (72) Op_Mod -> . CR
+    (11) EMPTY -> .
+
+    CR              shift and go to state 96
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Op_Mod                         shift and go to state 114
+    EMPTY                          shift and go to state 95
+
+state 107
+
+    (39) Case_1 -> REGISTER COMMA REGISTER COMMA REGISTER COMMA REGISTER .
+
+    $end            reduce using rule 39 (Case_1 -> REGISTER COMMA REGISTER COMMA REGISTER COMMA REGISTER .)
+
+
+state 108
+
+    (70) Registers -> Registers COMMA REGISTER .
+
+    COMMA           reduce using rule 70 (Registers -> Registers COMMA REGISTER .)
+    RF              reduce using rule 70 (Registers -> Registers COMMA REGISTER .)
+
+
+state 109
+
+    (53) Case_14 -> REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm RB . Write_Back
+    (59) Write_Back -> . EMPTY
+    (60) Write_Back -> . EM
+    (11) EMPTY -> .
+
+    EM              shift and go to state 105
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Write_Back                     shift and go to state 115
+    EMPTY                          shift and go to state 104
+
+state 110
+
+    (54) Case_15 -> REGISTER COMMA LB REGISTER COMMA IMMEDIATE RB . Write_Back
+    (59) Write_Back -> . EMPTY
+    (60) Write_Back -> . EM
+    (11) EMPTY -> .
+
+    EM              shift and go to state 105
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Write_Back                     shift and go to state 116
+    EMPTY                          shift and go to state 104
+
+state 111
+
+    (61) Reg_Shift_Imm -> Negative REGISTER . Shift_Imm
+    (64) Shift_Imm -> . EMPTY
+    (65) Shift_Imm -> . COMMA SHIFT_ACTION IMMEDIATE
+    (66) Shift_Imm -> . COMMA RRX
+    (11) EMPTY -> .
+
+    COMMA           shift and go to state 119
+    RB              reduce using rule 11 (EMPTY -> .)
+    $end            reduce using rule 11 (EMPTY -> .)
+
+    Shift_Imm                      shift and go to state 117
+    EMPTY                          shift and go to state 118
+
+state 112
+
+    (56) Case_17 -> REGISTER COMMA LB REGISTER RB COMMA IMMEDIATE .
+
+    $end            reduce using rule 56 (Case_17 -> REGISTER COMMA LB REGISTER RB COMMA IMMEDIATE .)
+
+
+state 113
+
+    (57) Case_18 -> REGISTER COMMA LB REGISTER RB COMMA Reg_Shift_Imm .
+
+    $end            reduce using rule 57 (Case_18 -> REGISTER COMMA LB REGISTER RB COMMA Reg_Shift_Imm .)
+
+
+state 114
+
+    (52) Case_13 -> REGISTER EM COMMA LF Reg_List RF Op_Mod .
+
+    $end            reduce using rule 52 (Case_13 -> REGISTER EM COMMA LF Reg_List RF Op_Mod .)
+
+
+state 115
+
+    (53) Case_14 -> REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm RB Write_Back .
+
+    $end            reduce using rule 53 (Case_14 -> REGISTER COMMA LB REGISTER COMMA Reg_Shift_Imm RB Write_Back .)
+
+
+state 116
+
+    (54) Case_15 -> REGISTER COMMA LB REGISTER COMMA IMMEDIATE RB Write_Back .
+
+    $end            reduce using rule 54 (Case_15 -> REGISTER COMMA LB REGISTER COMMA IMMEDIATE RB Write_Back .)
+
+
+state 117
+
+    (61) Reg_Shift_Imm -> Negative REGISTER Shift_Imm .
+
+    RB              reduce using rule 61 (Reg_Shift_Imm -> Negative REGISTER Shift_Imm .)
+    $end            reduce using rule 61 (Reg_Shift_Imm -> Negative REGISTER Shift_Imm .)
+
+
+state 118
+
+    (64) Shift_Imm -> EMPTY .
+
+    RB              reduce using rule 64 (Shift_Imm -> EMPTY .)
+    $end            reduce using rule 64 (Shift_Imm -> EMPTY .)
+
+
+state 119
+
+    (65) Shift_Imm -> COMMA . SHIFT_ACTION IMMEDIATE
+    (66) Shift_Imm -> COMMA . RRX
+
+    SHIFT_ACTION    shift and go to state 120
+    RRX             shift and go to state 121
+
+
+state 120
+
+    (65) Shift_Imm -> COMMA SHIFT_ACTION . IMMEDIATE
+
+    IMMEDIATE       shift and go to state 122
+
+
+state 121
+
+    (66) Shift_Imm -> COMMA RRX .
+
+    RB              reduce using rule 66 (Shift_Imm -> COMMA RRX .)
+    $end            reduce using rule 66 (Shift_Imm -> COMMA RRX .)
+
+
+state 122
+
+    (65) Shift_Imm -> COMMA SHIFT_ACTION IMMEDIATE .
+
+    RB              reduce using rule 65 (Shift_Imm -> COMMA SHIFT_ACTION IMMEDIATE .)
+    $end            reduce using rule 65 (Shift_Imm -> COMMA SHIFT_ACTION IMMEDIATE .)
+
